@@ -14,19 +14,30 @@ public class SweetTreats {
             new Courier("Geoff", 5, true, 2.00,10 , 16 )
     );
 
-   public static void courierSelector(Order order){
+   public static Courier courierSelector(Order order){
        List<Courier> availableCourier = couriers.stream()
                .filter(courier -> order.getOrderHour().isAfter(courier.getStartHour()) &&
                        order.getOrderHour().isBefore(courier.getEndHour()))
                .filter(c -> c.getMaxDeliveryMilesMiles() >= order.getCustomerDistance())
-               .filter(c1 -> c1.hasRefrigeratedBox() == order.isRefrigerated())
+//               .filter(c1 -> c1.hasRefrigeratedBox() == order.isRefrigerated())
                .collect(Collectors.toList());
 
+       Comparator<Courier> comparator = Comparator.comparing( Courier::getChargePerMile );
+
+       Courier cheapestCourier = availableCourier.stream().min(comparator).get();
+
+
+
       if(!availableCourier.isEmpty()){
+
           System.out.println(availableCourier);
+          System.out.println("--------------");
+          System.out.println(cheapestCourier);
+          return  cheapestCourier;
 
       }else{
           System.out.println("No courier Found at the Moment");
+          return null;
       }
 
 
