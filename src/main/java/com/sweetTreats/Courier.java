@@ -4,15 +4,15 @@ import java.time.LocalTime;
 
 public class Courier {
     private String name;
-    private double miles;
+    private double maxDeliveryMiles;
     private LocalTime startHour;
     private LocalTime endHour;
     private boolean hasRefrigeratedBox;
     private double chargePerMile;
 
-    public Courier(String name, double miles, boolean hasRefrigeratedBox, double chargePerMile, int startHouInNumber, int endHourInNumber) {
+    public Courier(String name, double maxDeliveryMiles, boolean hasRefrigeratedBox, double chargePerMile, int startHouInNumber, int endHourInNumber) {
         this.name = name;
-        this.miles = miles;
+        this.maxDeliveryMiles = maxDeliveryMiles;
         this.hasRefrigeratedBox = hasRefrigeratedBox;
         this.chargePerMile = chargePerMile;
 
@@ -27,11 +27,11 @@ public class Courier {
         return name;
     }
 
-    public double getMiles() {
-        return miles;
+    public double getMaxDeliveryMilesMiles() {
+        return maxDeliveryMiles;
     }
 
-    public boolean isHasRefrigeratedBox() {
+    public boolean hasRefrigeratedBox() {
         return hasRefrigeratedBox;
     }
 
@@ -51,6 +51,6 @@ public class Courier {
 
     @Override
     public String toString() {
-        return "Name: " + this.name + " " + "Miles: "+ this.miles + " " + "Charge per Mile: "+ this.chargePerMile;
+        return "Name: " + this.name + " " + "Miles: "+ this.maxDeliveryMiles + " " + "Charge per Mile: "+ this.chargePerMile;
     }
 }

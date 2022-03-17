@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SweetTreats {
-    Order newOrder = new Order(14, 3.5, true);
+    Order newOrder = new Order(14, 1.5, true);
 
     List<Courier> couriers =  Arrays.asList(
             new Courier("Bobby", 5, true, 1.75, 9 , 13 ),
@@ -18,6 +18,8 @@ public class SweetTreats {
        List<Courier> bestCourier = couriers.stream()
                .filter(courier -> newOrder.getOrderHour().isAfter(courier.getStartHour()) &&
                        newOrder.getOrderHour().isBefore(courier.getEndHour()))
+               .filter(c -> c.getMaxDeliveryMilesMiles() >= newOrder.getCustomerDistance())
+               .filter(c1 -> c1.hasRefrigeratedBox() == newOrder.isRefrigerated())
                .collect(Collectors.toList());
 
       if(!bestCourier.isEmpty()){
