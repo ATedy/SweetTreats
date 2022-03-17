@@ -1,15 +1,9 @@
 package com.sweetTreats;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        SweetTreats sweetTreats = new SweetTreats();
-        sweetTreats.courierSelector();
+        SweetTreats.courierSelector(new Order(14, 1.5, true));
 
 
     }

@@ -2,28 +2,29 @@ package com.sweetTreats;
 
 import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SweetTreats {
-    Order newOrder = new Order(14, 1.5, true);
 
-    List<Courier> couriers =  Arrays.asList(
+    static List<Courier> couriers =  Arrays.asList(
             new Courier("Bobby", 5, true, 1.75, 9 , 13 ),
             new Courier("Martin", 3, false, 1.5, 9 , 17),
             new Courier("Geoff", 5, true, 2.00,10 , 16 )
     );
 
-   public void courierSelector(){
-       List<Courier> bestCourier = couriers.stream()
-               .filter(courier -> newOrder.getOrderHour().isAfter(courier.getStartHour()) &&
-                       newOrder.getOrderHour().isBefore(courier.getEndHour()))
-               .filter(c -> c.getMaxDeliveryMilesMiles() >= newOrder.getCustomerDistance())
-               .filter(c1 -> c1.hasRefrigeratedBox() == newOrder.isRefrigerated())
+   public static void courierSelector(Order order){
+       List<Courier> availableCourier = couriers.stream()
+               .filter(courier -> order.getOrderHour().isAfter(courier.getStartHour()) &&
+                       order.getOrderHour().isBefore(courier.getEndHour()))
+               .filter(c -> c.getMaxDeliveryMilesMiles() >= order.getCustomerDistance())
+               .filter(c1 -> c1.hasRefrigeratedBox() == order.isRefrigerated())
                .collect(Collectors.toList());
 
-      if(!bestCourier.isEmpty()){
-          System.out.println(bestCourier);
+      if(!availableCourier.isEmpty()){
+          System.out.println(availableCourier);
+
       }else{
           System.out.println("No courier Found at the Moment");
       }
