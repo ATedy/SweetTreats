@@ -1,17 +1,20 @@
 package com.sweetTreats;
 
+import java.time.LocalTime;
+
 public class Order {
-    private int orderHour;
+    private LocalTime orderHour;
     private double customerDistance;
     private boolean IsRefrigerated;
 
     public Order(int orderHour, double customerDistance, boolean isRefrigerated) {
-        this.orderHour = orderHour;
+        LocalTime time = LocalTime.of(orderHour, 0);
+        this.orderHour = time;
         this.customerDistance = customerDistance;
         IsRefrigerated = isRefrigerated;
     }
 
-    public int getOrderHour() {
+    public LocalTime getOrderHour() {
         return orderHour;
     }
 
