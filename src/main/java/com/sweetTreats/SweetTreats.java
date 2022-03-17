@@ -25,7 +25,7 @@ public class SweetTreats {
 
       if(!availableCourier.isEmpty()){
 
-          Comparator<Courier> comparator = Comparator.comparing( Courier::getChargePerMile );
+          Comparator<Courier> comparator = Comparator.comparing( courier -> courier.getChargePerMile() );
           Courier cheapestCourier = availableCourier.stream().min(comparator).get();
 
           System.out.println(availableCourier);
