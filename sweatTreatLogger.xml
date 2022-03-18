@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-03-18T16:22:44.358909Z</date>
+  <millis>1647620564358</millis>
+  <nanos>909000</nanos>
+  <sequence>0</sequence>
+  <logger>com.sweetTreats.SweetTreats</logger>
+  <level>INFO</level>
+  <class>com.sweetTreats.SweetTreats</class>
+  <method>courierSelector</method>
+  <thread>1</thread>
+  <message>Cheapest available courier details
+Courier-Name: Geoff
+Max-Miles:5.0
+Charge Per Mile: 2.0</message>
+</record>
+</log>
