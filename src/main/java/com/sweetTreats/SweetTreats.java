@@ -4,15 +4,16 @@ import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class SweetTreats {
+    private static final Logger LOGGER = Logger.getLogger(SweetTreats.class.getName());
 
     static List<Courier> couriers =  Arrays.asList(
-            new Courier("Bobby", 5, true, 1.75, 9 , 13 ),
-            new Courier("Martin", 3, false, 1.5, 9 , 17),
-            new Courier("Geoff", 5, true, 2.00,10 , 16 ),
-            new Courier("Aman", 4, false, 1.05,11 , 16 )
+            new Courier("Bobby", 5, true, 1.75, "09:00" , "13:00" ),
+            new Courier("Martin", 3, false, 1.5, "09:00" , "17:00"),
+            new Courier("Geoff", 5, true, 2.00,"10:00" , "16:00" )
     );
 
    public static Courier courierSelector(Order order){
@@ -23,18 +24,18 @@ public class SweetTreats {
                .filter(c1 -> c1.hasRefrigeratedBox() == order.isRefrigerated())
                .collect(Collectors.toList());
 
-      if(!availableCourier.isEmpty()){
+//       result.sort(Comparator.comparingDouble(Courier::getChargePerMile));
 
+      if(!availableCourier.isEmpty()){
           Comparator<Courier> comparator = Comparator.comparing( courier -> courier.getChargePerMile() );
           Courier cheapestCourier = availableCourier.stream().min(comparator).get();
 
-          System.out.println(availableCourier);
-          System.out.println("--------------");
-          System.out.println(cheapestCourier);
+          LOGGER.info("Cheapest available courier details" + "\n" + "Courier-Name: " + cheapestCourier.getName() + "\n" + "Max-Miles:" + cheapestCourier.getMaxDeliveryMilesMiles() +
+                  "\n" + "Charge Per Mile: " + cheapestCourier.getChargePerMile());
           return  cheapestCourier;
 
       }else{
-          System.out.println("Sorry, no courier Found at the Moment");
+          LOGGER.info("Sorry, it seems there's no available courier at the Moment");
           return null;
       }
 
