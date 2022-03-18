@@ -11,7 +11,8 @@ public class SweetTreats {
     static List<Courier> couriers =  Arrays.asList(
             new Courier("Bobby", 5, true, 1.75, 9 , 13 ),
             new Courier("Martin", 3, false, 1.5, 9 , 17),
-            new Courier("Geoff", 5, true, 2.00,10 , 16 )
+            new Courier("Geoff", 5, true, 2.00,10 , 16 ),
+            new Courier("Aman", 4, false, 1.05,11 , 16 )
     );
 
    public static Courier courierSelector(Order order){
@@ -21,7 +22,6 @@ public class SweetTreats {
                .filter(c -> c.getMaxDeliveryMilesMiles() >= order.getCustomerDistance())
                .filter(c1 -> c1.hasRefrigeratedBox() == order.isRefrigerated())
                .collect(Collectors.toList());
-
 
       if(!availableCourier.isEmpty()){
 
