@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2022-03-18T16:22:44.358909Z</date>
-  <millis>1647620564358</millis>
-  <nanos>909000</nanos>
+  <date>2022-03-21T09:39:14.709263Z</date>
+  <millis>1647855554709</millis>
+  <nanos>263000</nanos>
   <sequence>0</sequence>
   <logger>com.sweetTreats.SweetTreats</logger>
   <level>INFO</level>
@@ -12,8 +12,8 @@
   <method>courierSelector</method>
   <thread>1</thread>
   <message>Cheapest available courier details
-Courier-Name: Geoff
-Max-Miles:5.0
-Charge Per Mile: 2.0</message>
+Courier-Name: Martin
+Max-Miles:3.0
+Charge Per Mile: 1.5</message>
 </record>
 </log>
