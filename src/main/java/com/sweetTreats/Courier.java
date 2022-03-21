@@ -1,6 +1,7 @@
 package com.sweetTreats;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Courier {
     private String name;
@@ -10,17 +11,14 @@ public class Courier {
     private boolean hasRefrigeratedBox;
     private double chargePerMile;
 
-    public Courier(String name, double maxDeliveryMiles, boolean hasRefrigeratedBox, double chargePerMile, int startHouInNumber, int endHourInNumber) {
+    public Courier(String name, double maxDeliveryMiles, boolean hasRefrigeratedBox, double chargePerMile, String startHouInNumber, String endHourInNumber) {
         this.name = name;
         this.maxDeliveryMiles = maxDeliveryMiles;
         this.hasRefrigeratedBox = hasRefrigeratedBox;
         this.chargePerMile = chargePerMile;
-
-        LocalTime time1 = LocalTime.of(startHouInNumber, 0);
-        this.startHour = time1;
-
-        LocalTime time2 = LocalTime.of(endHourInNumber, 0);
-        this.endHour = time2;
+//        LocalTime time2 = LocalTime.of(endHourInNumber, 0);
+        this.startHour = LocalTime.parse(startHouInNumber, DateTimeFormatter.ISO_LOCAL_TIME);
+        this.endHour = LocalTime.parse(endHourInNumber, DateTimeFormatter.ISO_LOCAL_TIME);;
     }
 
     public String getName() {

@@ -1,18 +1,35 @@
 package com.sweetTreats;
 
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.*;
 import java.util.stream.Collectors;
 
 public class SweetTreats {
+    private static final Logger CONSOLE = Logger.getLogger(SweetTreats.class.getName());
+
+    static {
+        Logger logger = Logger.getLogger("");
+        logger.setLevel(Level.INFO);
+        FileHandler fileHandler = null;
+        try {
+            fileHandler = new FileHandler("sweatTreatLogger.xml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        XMLFormatter formatter = new XMLFormatter();
+        fileHandler.setFormatter(formatter);
+        logger.addHandler(fileHandler);
+
+    }
 
     static List<Courier> couriers =  Arrays.asList(
-            new Courier("Bobby", 5, true, 1.75, 9 , 13 ),
-            new Courier("Martin", 3, false, 1.5, 9 , 17),
-            new Courier("Geoff", 5, true, 2.00,10 , 16 ),
-            new Courier("Aman", 4, false, 1.05,11 , 16 )
+            new Courier("Bobby", 5, true, 1.75, "09:00" , "13:00" ),
+            new Courier("Martin", 3, false, 1.5, "09:00" , "17:00"),
+            new Courier("Geoff", 5, true, 2.00,"10:00" , "16:00" )
     );
 
    public static Courier courierSelector(Order order){
@@ -23,37 +40,22 @@ public class SweetTreats {
                .filter(c1 -> c1.hasRefrigeratedBox() == order.isRefrigerated())
                .collect(Collectors.toList());
 
-      if(!availableCourier.isEmpty()){
+//       result.sort(Comparator.comparingDouble(Courier::getChargePerMile));
 
+      if(!availableCourier.isEmpty()){
           Comparator<Courier> comparator = Comparator.comparing( courier -> courier.getChargePerMile() );
           Courier cheapestCourier = availableCourier.stream().min(comparator).get();
 
-          System.out.println(availableCourier);
-          System.out.println("--------------");
-          System.out.println(cheapestCourier);
+          CONSOLE.info("Cheapest available courier details" + "\n" + "Courier-Name: " + cheapestCourier.getName() + "\n" + "Max-Miles:" + cheapestCourier.getMaxDeliveryMilesMiles() +
+                  "\n" + "Charge Per Mile: " + cheapestCourier.getChargePerMile());
           return  cheapestCourier;
 
       }else{
-          System.out.println("Sorry, no courier Found at the Moment");
+          CONSOLE.info("Sorry, it seems there's no available courier at the Moment");
           return null;
       }
 
-
-
-
-
-
-//       System.out.println(start.isBefore(stop));
    }
 }
 
 
-
-//    LocalTime start = LocalTime.of( 8, 0);
-//    LocalTime stop = LocalTime.of( 15, 0 );
-//
-//    LocalTime sT = LocalTime.of(7,0);
-//    LocalTime eT = LocalTime.of(7,00);
-//
-//// print result
-//       System.out.println("LocalTime : " + sT + "::" + eT) ;
